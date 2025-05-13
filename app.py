@@ -10,7 +10,7 @@ annual_om_cost = st.number_input("Annual O&M Cost (USD per kW)", min_value=0.0, 
 Location = st.text_input("Location (Country, City)", "Nigeria, Lagos")
 panel_area = st.number_input("Available area (m2)", min_value=0.0, value=1000.0)
 daily_sunlight_hours = st.number_input("Average hours of sunlight per day", min_value=0.0, value=10.0)
-#start_year = st.number_input("Start Year", min_value=2000, value=2020)
+Year = st.number_input("Year to use in claculating annual energy production", min_value=2000, value=2020)
 #end_year = st.number_input("End Year", min_value=2000, value=2023)
 discount_rate = st.number_input("Discount Rate (%)", min_value=0.0, value=5.0) / 100
 lifetime = st.number_input("Lifetime (years)", min_value=1, value=25)   
@@ -23,10 +23,8 @@ if st.button("Calculate LCOE"):
     # Extract latitude and longitude
     choice = make_choice(data)
     
-    start_year=2020
-    end_year = start_year
     # Get solar irradiance data
-    solar_data = get_solar_irrd(choice, start_year, end_year)
+    solar_data = get_solar_irrd(choice, Year)
     
     # Calculate annual energy output
     annual_energy = annual_energy_output(solar_data,panel_area,daily_sunlight_hours)

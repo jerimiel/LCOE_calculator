@@ -24,8 +24,11 @@ def make_choice(data):
     return choice
 
 #get solar irrdnce fro api for
-def get_solar_irrd(choice,start_year, end_year):
+def get_solar_irrd(choice,year):
     # Define the API endpoint
+    start_year = year
+    end_year = year
+    # Construct the URL with parameters
     solar_url = f"https://power.larc.nasa.gov/api/temporal/daily/point?start={start_year}&end={end_year}&latitude={choice["lat"]}&longitude={choice["lon"]}&community=sb&parameters=ALLSKY_SFC_SW_DWN&format=json&user={asso_name}&header=true&time-standard=utc"
     
     # Make the GET request
